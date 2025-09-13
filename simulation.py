@@ -15,23 +15,23 @@ class Simulation:
     def draw(self, window):
         self.grid.draw(window)
 
-    def count_live_neighbours(self, grid, row, column):
-        live_neighbours = 0
+    def count_live_neighbors(self, grid, row, column):
+        live_neighbors = 0
 
-        neighbour_offsets = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)]
-        for offset in neighbour_offsets:
+        neighbor_offsets = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)]
+        for offset in neighbor_offsets:
             new_row = (row + offset[0]) % self.rows
-            new_column = (column + offset[1] % self.columns)
+            new_column = (column + offset[1]) % self.columns
             if self.grid.cells[new_row][new_column] == 1:
-                live_neighbours += 1
+                live_neighbors += 1
 
-        return live_neighbours
-    
+        return live_neighbors
+
     def update(self):
         if self.is_running():
             for row in range(self.rows):
                 for column in range(self.columns):
-                    live_neighbours = self.count_live_neighbours(self.grid, row, column)
+                    live_neighbours = self.count_live_neighbors(self.grid, row, column)
                     cell_value = self.grid.cells[row][column]
 
                     if cell_value == 1:
@@ -49,23 +49,23 @@ class Simulation:
             for column in range(self.columns):
                 self.grid.cells[row][column] = self.temp_grid.cells[row][column]
 
-def is_running(self):
-    return self.run 
+    def is_running(self):
+        return self.run 
 
-def start(self):
-    self.run = True
+    def start(self):
+        self.run = True
 
-def stop(self):
-    self.run = False
+    def stop(self):
+        self.run = False
 
-def clear(self):
-    if self.is_running() == False:
-        self.grid.clear()
+    def clear(self):
+        if self.is_running() == False:
+            self.grid.clear()
 
-def create_random_state(self):
-    if self.is_running() == False:
-        self.grid_fill_random()
+    def create_random_state(self):
+        if self.is_running() == False:
+            self.grid_fill_random()
 
-def toggle_cell(self, row, column):
-    if self.is_running() == False:
-        self.grid.toggle_cell(row, column)
+    def toggle_cell(self, row, column):
+        if self.is_running() == False:
+            self.grid.toggle_cell(row, column)
