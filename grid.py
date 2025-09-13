@@ -14,7 +14,7 @@ class Grid:
         self.columns = width // cell_size
         self.cell_size = cell_size
         self.cells = [[0 for _ in range(self.columns)] for _ in range(self.rows)]
-
+        
     def draw(self, window):
         """
         Draws the grid on the window
@@ -24,22 +24,17 @@ class Grid:
         """
         for row in range(self.rows):
             for column in range(self.columns):
-                color = (0, 255, 0) if self.cells[row][column] else (55, 55, 55)
-                pygame.draw.rect(window, color, (column * self.cell_size, row * self.cell_size, self.cell_size - 1, self.cell_size - 1))
+                color = (0, 255, 0) if self.cells[row][column] else  (55, 55, 55)
+                pygame.draw.rect(window, color, (column * self.cell_size, row * self.cell_size, self.cell_size -1, self.cell_size - 1))
 
-    def fill_random(self):
         """
         Draws a random cells in the grid
         """
-        pass
 
-    def clear(self):
         """
         Clears the grid on input
         """
-        pass
 
-    def toggle_cell(self, row, column):
         """
         Toggles a cell's state on input
 
@@ -47,3 +42,16 @@ class Grid:
             row (int): The row of the grid
             column (int): the column of the grid
         """
+    def fill_random(self):
+        for row in range(self.rows):
+            for column in range(self.columns):
+                self.cells[row][column] = random.choice([1, 0, 0, 0])
+
+    def clear(self):
+        for row in range(self.rows):
+            for column in range(self.columns):
+                self.cells[row][column] = 0
+
+    def toggle_cell(self, row, column):
+        if 0 <= row < self.rows and 0 <= column < self.columns:
+            self.cells[row][column] = not self.cells[row][column]

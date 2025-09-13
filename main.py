@@ -50,6 +50,7 @@ while True:
                 simulation.create_random_state()
             elif event.key == pygame.K_c:
                 simulation.clear()
+                
     # 2. Update State
     simulation.update()
 
